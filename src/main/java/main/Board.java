@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import pieces.*;
+import sfx.SFXManager;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Board extends JPanel{
     Input input = new Input(this);
     
     CheckScanner checkScanner = new CheckScanner(this);
+    SFXManager sfx;
     
     public int enPassantTile = -1;
     
@@ -35,6 +37,7 @@ public class Board extends JPanel{
         
         this.addMouseListener(input);
         this.addMouseMotionListener(input);
+        this.sfx = SFXManager.getInstance();
         
         addPieces();
     }
@@ -98,7 +101,12 @@ public class Board extends JPanel{
     }
     
     public void capture(Piece piece){ 
-        pieceList.remove(piece); 
+        if (piece != null) {
+            pieceList.remove(piece); 
+            sfx.playSound("delete");
+        } else {
+            sfx.playSound("put");
+        }
     }
     
     public boolean isValidMove(Move move) {

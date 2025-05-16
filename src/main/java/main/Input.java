@@ -7,6 +7,7 @@ package main;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import pieces.Piece;
+import sfx.SFXManager;
 
 /**
  *
@@ -15,9 +16,11 @@ import pieces.Piece;
 public class Input extends MouseAdapter{
 
     Board board;
+    private SFXManager sfx;
 
     public Input(Board board) {
         this.board = board;
+        this.sfx = SFXManager.getInstance();
     }
     
     @Override
@@ -28,6 +31,7 @@ public class Input extends MouseAdapter{
         Piece pieceXY = board.getPiece(col, row);
         if (pieceXY != null) {
             board.selectedPiece = pieceXY;
+            sfx.playSound("grab");
         }
     }
 
@@ -53,6 +57,7 @@ public class Input extends MouseAdapter{
             } else {
                 board.selectedPiece.xPos = board.selectedPiece.col * board.tileSize;
                 board.selectedPiece.yPos = board.selectedPiece.row * board.tileSize;
+                sfx.playSound("put");
             }
         }
         

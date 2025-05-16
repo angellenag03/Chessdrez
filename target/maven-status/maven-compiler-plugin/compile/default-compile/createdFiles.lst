@@ -1,0 +1,12 @@
+main\CheckScanner.class
+main\Input.class
+pieces\Pawn.class
+pieces\Bishop.class
+pieces\Rook.class
+main\Main.class
+pieces\Knight.class
+pieces\Queen.class
+main\Board.class
+main\Move.class
+pieces\King.class
+pieces\Piece.class

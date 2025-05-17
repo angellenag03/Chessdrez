@@ -66,6 +66,21 @@ public class Board extends JPanel{
         }
     }
     
+    private void moveKing(Move move) {
+        if (Math.abs(move.piece.col - move.newCol) == 2) {
+            Piece rook;
+            
+            if (move.piece.col < move.newCol) {
+                rook = getPiece(7, move.piece.row);
+                rook.col = 5;
+            } else {
+                rook = getPiece(0, move. piece.row);
+                rook.col = 3;
+            }
+            rook.xPos = rook.col * tileSize;
+        }
+    }
+    
     private void movePawn(Move move) {
         // en passant
         int colorIndex = move.piece.isWhite ? 1 : -1;

@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
+import sfx.SFXManager;
 
 /**
  *
@@ -21,7 +22,8 @@ public class Main {
         frame.setMinimumSize(new Dimension(1000,1000));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        SFXManager sfx = SFXManager.getInstance();
+        sfx.playSong("Main Theme.wav", "Check.wav");
         Board b = new Board();
         frame.add(b);
         

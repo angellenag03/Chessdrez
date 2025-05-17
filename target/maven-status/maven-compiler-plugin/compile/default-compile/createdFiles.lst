@@ -1,13 +1,13 @@
 main\Main.class
-pieces\Queen.class
-pieces\Bishop.class
 pieces\Knight.class
 pieces\King.class
-main\Board.class
 main\CheckScanner.class
-main\Input.class
 pieces\Pawn.class
 pieces\Rook.class
 sfx\SFXManager.class
 main\Move.class
+pieces\Queen.class
+pieces\Bishop.class
+main\Board.class
+main\Input.class
 pieces\Piece.class

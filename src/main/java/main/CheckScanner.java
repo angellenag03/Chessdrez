@@ -2,6 +2,7 @@
 package main;
 
 import pieces.Piece;
+import sfx.SFXManager;
 
 /**
  *
@@ -9,6 +10,7 @@ import pieces.Piece;
  */
 public class CheckScanner {
     Board board;
+    private boolean lastCheckState = false;
     
     public CheckScanner(Board board) {
         this.board = board;
@@ -26,7 +28,7 @@ public class CheckScanner {
             kingRow = move.newRow;
         }
         
-        return hitByRook   (move.newCol, move.newRow, king, kingCol, kingRow, 0, 1) || // up
+        boolean currentCheckState = hitByRook   (move.newCol, move.newRow, king, kingCol, kingRow, 0, 1) || // up
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, 1, 0) || // right
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, 0, -1) || // down
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, -1, 0) || // left
@@ -39,6 +41,14 @@ public class CheckScanner {
                 hitByKnight(move.newCol, move.newRow, king, kingCol, kingRow) ||
                 hitByPawn(move.newCol, move.newRow, king, kingCol, kingRow) ||
                 hitByKing(king, kingCol, kingRow);
+        
+        // Actualizar música solo si el estado de jaque cambió
+        if (currentCheckState != lastCheckState) {
+            SFXManager.getInstance().updateCheckState(currentCheckState);
+            lastCheckState = currentCheckState;
+        }
+        
+        return currentCheckState;
     }
     
     private boolean hitByRook(int col, int row, 

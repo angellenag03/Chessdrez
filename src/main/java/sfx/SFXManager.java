@@ -14,8 +14,8 @@ public class SFXManager {
     private Random random = new Random();
     
     // Configuración de fade
-    private static final float MAIN_VOLUME = -30.0f; // Volumen base más bajo
-    private static final float CHECK_VOLUME = -8.0f;  // Volumen de jaque
+    private static final float LOW_VOLUME = -30.0f; // Volumen base más bajo
+    private static final float MAIN_VOLUME = -8.0f;  // Volumen normal
     private static final int FADE_DURATION_MS = 1800;
     private static final int FADE_STEPS = 30;
     
@@ -48,7 +48,7 @@ public class SFXManager {
             
             mainTheme.open(mainStream);
             mainVolumeControl = (FloatControl) mainTheme.getControl(FloatControl.Type.MASTER_GAIN);
-            setVolume(mainVolumeControl, CHECK_VOLUME);
+            setVolume(mainVolumeControl, MAIN_VOLUME);
             mainTheme.loop(Clip.LOOP_CONTINUOUSLY);
             
             // Cargar y convertir tema de jaque
@@ -60,7 +60,7 @@ public class SFXManager {
             
             checkTheme.open(checkStream);
             checkVolumeControl = (FloatControl) checkTheme.getControl(FloatControl.Type.MASTER_GAIN);
-            setVolume(checkVolumeControl, MAIN_VOLUME*0.9f); // Inicia con volumen bajo
+            setVolume(checkVolumeControl, LOW_VOLUME); // Inicia con volumen bajo
         } catch (Exception e) {
             System.err.println("Error al cargar música: " + e.getMessage());
             e.printStackTrace();
@@ -104,9 +104,9 @@ public class SFXManager {
     
     private void fadeInCheckTheme() {
         new Thread(() -> {
-            float step = (CHECK_VOLUME - MAIN_VOLUME) / FADE_STEPS;
+            float step = (MAIN_VOLUME - LOW_VOLUME) / FADE_STEPS;
             for (int i = 1; i <= FADE_STEPS; i++) {
-                float volume = MAIN_VOLUME + (step * i);
+                float volume = LOW_VOLUME + (step * i);
                 setVolume(checkVolumeControl, volume);
                 try {
                     Thread.sleep(FADE_DURATION_MS / FADE_STEPS);
@@ -119,9 +119,9 @@ public class SFXManager {
     
     private void fadeOutCheckTheme() {
         new Thread(() -> {
-            float step = (CHECK_VOLUME - MAIN_VOLUME) / FADE_STEPS;
+            float step = (MAIN_VOLUME - LOW_VOLUME) / FADE_STEPS;
             for (int i = FADE_STEPS; i >= 0; i--) {
-                float volume = MAIN_VOLUME + (step * i);
+                float volume = LOW_VOLUME + (step * i);
                 setVolume(checkVolumeControl, volume);
                 try {
                     Thread.sleep(FADE_DURATION_MS / FADE_STEPS);

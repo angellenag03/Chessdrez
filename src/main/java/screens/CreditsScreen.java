@@ -1,65 +1,96 @@
 package screens;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
+import utils.FontLoader;
+import java.io.IOException;
 
-/**
- *
- * @author Ricardo
- */
-public class CreditsScreen extends JPanel{
+public class CreditsScreen extends JPanel {
+    private Font alagardFontLarge;
+    private Font alagardFontMedium;
+    private Font alagardFontSmall;
+    
     public CreditsScreen(JPanel cards, CardLayout cardLayout) {
+        // Cargar la fuente Alagard en diferentes tamaños
+        try {
+            alagardFontLarge = FontLoader.loadFont(36f);
+            alagardFontMedium = FontLoader.loadFont(24f);
+            alagardFontSmall = FontLoader.loadFont(18f);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Fuentes de respaldo si hay error
+            alagardFontLarge = new Font("Century Gothic", Font.BOLD, 36);
+            alagardFontMedium = new Font("Century Gothic", Font.PLAIN, 24);
+            alagardFontSmall = new Font("Century Gothic", Font.PLAIN, 18);
+        }
+        
         setLayout(new BorderLayout());
-        setBackground(new Color(240, 240, 240));
+        setBackground(Color.BLACK);  // Fondo negro para mejor contraste
         
         // Panel central para el contenido
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-        contentPanel.setBackground(new Color(240, 240, 240));
+        contentPanel.setBackground(Color.BLACK);
         
-        // Título
-        JLabel title = new JLabel("Creditos", SwingConstants.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 36));
+        // Título con estilo medieval
+        JLabel title = new JLabel("CREDITS", SwingConstants.CENTER);
+        title.setFont(alagardFontLarge);
+        title.setForeground(new Color(200, 160, 60));  // Color dorado medieval
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         
-        // Contenido de créditos
-        JLabel credits1 = new JLabel("Chess Game Development", SwingConstants.CENTER);
-        credits1.setFont(new Font("Arial", Font.PLAIN, 20));
-        credits1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Línea decorativa
+        JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+        separator.setForeground(new Color(200, 160, 60));
+        separator.setMaximumSize(new Dimension(400, 5));
         
-        JLabel credits2 = new JLabel("Developed by: [Your Name]", SwingConstants.CENTER);
-        credits2.setFont(new Font("Arial", Font.PLAIN, 18));
-        credits2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Contenido de créditos con estilo
+        JLabel gameTitle = new JLabel("ADREJEZ", SwingConstants.CENTER);
+        gameTitle.setFont(alagardFontMedium);
+        gameTitle.setForeground(Color.WHITE);
+        gameTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        // Botón de regreso
-        JButton backButton = new JButton("Back to Main Menu");
-        backButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        JLabel developedBy = new JLabel("Developed by:", SwingConstants.CENTER);
+        developedBy.setFont(alagardFontSmall);
+        developedBy.setForeground(new Color(180, 180, 180));
+        developedBy.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        JLabel author1 = new JLabel("Ricardo ID: 0000024700", SwingConstants.CENTER);
+        author1.setFont(alagardFontMedium);
+        author1.setForeground(new Color(200, 160, 60));
+        author1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        JLabel author2 = new JLabel("angelsn ID: 00000248553", SwingConstants.CENTER);
+        author2.setFont(alagardFontMedium);
+        author2.setForeground(new Color(200, 160, 60));
+        author2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        // Botón de regreso con estilo
+        JButton backButton = new JButton("RETURN TO MENU");
+        backButton.setFont(alagardFontSmall);
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setBackground(new Color(70, 50, 20));
+        backButton.setForeground(Color.WHITE);
+        backButton.setBorder(BorderFactory.createLineBorder(new Color(200, 160, 60), 2));
+        backButton.setFocusPainted(false);
         backButton.addActionListener(e -> cardLayout.show(cards, "Menu"));
         
         // Espaciadores
-        Component verticalStrut1 = Box.createVerticalStrut(30);
-        Component verticalStrut2 = Box.createVerticalStrut(20);
-        Component verticalStrut3 = Box.createVerticalStrut(40);
+        Component verticalStrut = Box.createVerticalStrut(20);
         
         // Agregar componentes al panel
         contentPanel.add(title);
-        contentPanel.add(verticalStrut1);
-        contentPanel.add(credits1);
-        contentPanel.add(verticalStrut2);
-        contentPanel.add(credits2);
-        contentPanel.add(verticalStrut3);
+        contentPanel.add(separator);
+        contentPanel.add(Box.createVerticalStrut(30));
+        contentPanel.add(gameTitle);
+        contentPanel.add(Box.createVerticalStrut(15));
+        contentPanel.add(developedBy);
+        contentPanel.add(Box.createVerticalStrut(10));
+        contentPanel.add(author1);
+        contentPanel.add(Box.createVerticalStrut(5));
+        contentPanel.add(author2);
+        contentPanel.add(Box.createVerticalGlue());
         contentPanel.add(backButton);
         
         add(contentPanel, BorderLayout.CENTER);

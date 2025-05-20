@@ -1,5 +1,7 @@
 main\Main.class
+main\MainFrame.class
 pieces\Knight.class
+screens\CreditsScreen.class
 pieces\King.class
 main\MoveHistoryPanel.class
 main\CheckScanner.class
@@ -13,4 +15,5 @@ screens\Game.class
 pieces\Bishop.class
 main\Board.class
 main\Input.class
+screens\MainMenu.class
 pieces\Piece.class

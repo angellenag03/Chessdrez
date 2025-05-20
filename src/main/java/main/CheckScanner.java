@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Iterator;
 import pieces.Piece;
 
 /**
@@ -216,27 +217,22 @@ public class CheckScanner {
      * @return True si no hay movimientos legales, False si hay al menos uno.
      */
     public boolean noValidMoves(boolean isWhite) {
-        // Iterar sobre todas las piezas del color dado
-        for (Piece piece : board.pieceList) {
+        Iterator<Piece> iterator = board.pieceList.iterator();
+        while (iterator.hasNext()) {
+            Piece piece = iterator.next();
             if (piece.isWhite == isWhite) {
-                // Iterar sobre todas las casillas del tablero como posibles destinos
                 for (int row = 0; row < board.rows; row++) {
                     for (int col = 0; col < board.cols; col++) {
-                         // Crear un objeto Move para el movimiento potencial
-                         Move potentialMove = new Move(board, piece, col, row);
-
-                         // Verificar si este movimiento potencial es legal según las reglas del tablero
-                         // isValidMove ya debe verificar si el movimiento saca al rey del jaque
+                        Move potentialMove = new Move(board, piece, col, row);
                         if (board.isValidMove(potentialMove)) {
-                            return false; // Se encontró al menos un movimiento legal
+                            return false;
                         }
                     }
                 }
             }
         }
-        return true; // No se encontró ningún movimiento legal para ninguna pieza de este color
+        return true;
     }
-
     /**
      * Verifica si la partida ha terminado en jaque mate para el color especificado.
      * @param isWhite True si verificamos jaque mate para las blancas, False para las negras.

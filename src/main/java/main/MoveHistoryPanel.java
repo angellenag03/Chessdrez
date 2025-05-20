@@ -48,11 +48,11 @@ public class MoveHistoryPanel extends JPanel {
     static {
         try {
             TITLE_FONT = FontLoader.loadFont(26f);
-            TABLE_FONT = FontLoader.loadFont(24f);
+            TABLE_FONT = FontLoader.loadFont(20f);
         } catch (IOException e) {
             // Si hay error, usar fuentes por defecto
             TITLE_FONT = new Font("Century Gothic", Font.BOLD, 26);
-            TABLE_FONT = new Font("Century Gothic", Font.PLAIN, 24);
+            TABLE_FONT = new Font("Century Gothic", Font.PLAIN, 20);
         }
     }
     

@@ -33,7 +33,7 @@ public class MainMenu extends JPanel {
     private Font alagardFontMedium;
     private Clip hoverSound;
     private Clip clickSound;
-    private SFXManager sfxManager;
+    private SFXManager sfx;
     
     public MainMenu(JPanel cards, CardLayout cardLayout) {
         // Cargar la fuente Alagard
@@ -48,23 +48,8 @@ public class MainMenu extends JPanel {
         }
         
         // Obtener instancia del SFXManager
-        sfxManager = SFXManager.getInstance();
-        
-        // Cargar sonidos
-        try {
-            AudioInputStream hoverAudio = AudioSystem.getAudioInputStream(
-                getClass().getClassLoader().getResource("sounds/hover.wav"));
-            hoverSound = AudioSystem.getClip();
-            hoverSound.open(hoverAudio);
-            
-            AudioInputStream clickAudio = AudioSystem.getAudioInputStream(
-                getClass().getClassLoader().getResource("sounds/click.wav"));
-            clickSound = AudioSystem.getClip();
-            clickSound.open(clickAudio);
-        } catch (Exception e) {
-            System.err.println("Error cargando sonidos: " + e.getMessage());
-        }
-        
+        sfx = SFXManager.getInstance();
+         
         this.cardLayout = cardLayout;
         this.cards = cards;
         
@@ -94,14 +79,14 @@ public class MainMenu extends JPanel {
         // Botón Iniciar Juego
         JButton startButton = createMenuButton("START GAME");
         startButton.addActionListener(e -> {
-            playSound(clickSound);
+            sfx.playSound("hover");
             showGameModeSelection();
         });
         
         // Botón Créditos
         JButton creditsButton = createMenuButton("CREDITS");
         creditsButton.addActionListener(e -> {
-            playSound(clickSound);
+            sfx.playSound("hover");
             cardLayout.show(cards, "Credits");
         });
         
@@ -131,7 +116,7 @@ public class MainMenu extends JPanel {
                 button.setForeground(new Color(220, 180, 80));
                 
                 // Método 1: Usando la instancia local de sonido
-                playSound(hoverSound);
+                sfx.playSound("hover");
                 
                 // Método 2: Alternativa usando SFXManager
                 // Descomenta esta línea para usar SFXManager en lugar de la reproducción local
@@ -144,17 +129,6 @@ public class MainMenu extends JPanel {
         });
         
         return button;
-    }
-    
-    private void playSound(Clip sound) {
-        if (sound != null) {
-            // Detener el sonido si está reproduciéndose
-            if (sound.isRunning()) {
-                sound.stop();
-            }
-            sound.setFramePosition(0);
-            sound.start();
-        }
     }
     
     private void showGameModeSelection() {
@@ -194,11 +168,4 @@ public class MainMenu extends JPanel {
         }
     }
     
-    @Override
-    protected void finalize() throws Throwable {
-        // Liberar recursos de sonido
-        if (hoverSound != null) hoverSound.close();
-        if (clickSound != null) clickSound.close();
-        super.finalize();
-    }
 }

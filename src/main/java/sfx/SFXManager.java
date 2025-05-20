@@ -14,7 +14,7 @@ public class SFXManager {
     private Random random = new Random();
     
     // Configuración de fade
-    private static final float LOW_VOLUME = -30.0f; // Volumen base más bajo
+    private static final float LOW_VOLUME = -45.0f; // Volumen base más bajo
     private static final float MAIN_VOLUME = -8.0f;  // Volumen normal
     private static final int FADE_DURATION_MS = 1800;
     private static final int FADE_STEPS = 30;
@@ -46,11 +46,6 @@ public class SFXManager {
             AudioFormat mainFormat = getSupportedFormat(originalMainStream.getFormat());
             AudioInputStream mainStream = AudioSystem.getAudioInputStream(mainFormat, originalMainStream);
             
-            mainTheme.open(mainStream);
-            mainVolumeControl = (FloatControl) mainTheme.getControl(FloatControl.Type.MASTER_GAIN);
-            setVolume(mainVolumeControl, MAIN_VOLUME);
-            mainTheme.loop(Clip.LOOP_CONTINUOUSLY);
-            
             // Cargar y convertir tema de jaque
             InputStream checkSrc = getClass().getResourceAsStream("/music/" + checkFile);
             AudioInputStream originalCheckStream = AudioSystem.getAudioInputStream(
@@ -58,9 +53,28 @@ public class SFXManager {
             AudioFormat checkFormat = getSupportedFormat(originalCheckStream.getFormat());
             AudioInputStream checkStream = AudioSystem.getAudioInputStream(checkFormat, originalCheckStream);
             
+            // Abrir ambos clips
+            mainTheme.open(mainStream);
             checkTheme.open(checkStream);
+            
+            // Configurar controles de volumen
+            mainVolumeControl = (FloatControl) mainTheme.getControl(FloatControl.Type.MASTER_GAIN);
             checkVolumeControl = (FloatControl) checkTheme.getControl(FloatControl.Type.MASTER_GAIN);
-            setVolume(checkVolumeControl, LOW_VOLUME); // Inicia con volumen bajo
+            
+            // Establecer volúmenes iniciales
+            setVolume(mainVolumeControl, MAIN_VOLUME);
+            setVolume(checkVolumeControl, LOW_VOLUME);
+            
+            // Iniciar ambos temas simultáneamente
+            mainTheme.loop(Clip.LOOP_CONTINUOUSLY);
+            checkTheme.loop(Clip.LOOP_CONTINUOUSLY);
+            
+            // Cerrar streams
+            mainStream.close();
+            checkStream.close();
+            originalMainStream.close();
+            originalCheckStream.close();
+            
         } catch (Exception e) {
             System.err.println("Error al cargar música: " + e.getMessage());
             e.printStackTrace();
@@ -92,9 +106,7 @@ public class SFXManager {
     }
     
     private void startCheckTheme() {
-        if (!checkTheme.isRunning()) {
-            checkTheme.loop(Clip.LOOP_CONTINUOUSLY);
-        }
+        // Ya no necesitamos iniciar el tema aquí porque ya está sonando
         fadeInCheckTheme();
     }
     

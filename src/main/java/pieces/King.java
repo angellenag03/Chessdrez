@@ -37,7 +37,7 @@ public class King extends Piece{
                 if (rook != null && rook.isFirstMove && isFirstMove){
                     return board.getPiece(5, row) == null &&
                            board.getPiece(6, row) == null &&  // CORREGIDO
-                           !board.checkScanner.isKingChecked(new Move(board, this, 5, row));
+                           !board.checkScanner.isKingChecked(5, row, isWhite); // Check if the intermediate square is attacked
                 }
             } else if (col == 2){  // Enroque largo
                 Piece rook = board.getPiece(0, row);
@@ -45,7 +45,7 @@ public class King extends Piece{
                     return board.getPiece(3, row) == null &&
                            board.getPiece(2, row) == null &&
                            board.getPiece(1, row) == null &&
-                           !board.checkScanner.isKingChecked(new Move(board, this, 3, row));
+                           !board.checkScanner.isKingChecked(3, row, isWhite); // Check if the intermediate square is attacked
                 }
             }
         }        

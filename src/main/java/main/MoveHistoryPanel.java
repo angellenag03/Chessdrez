@@ -1,12 +1,15 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -23,6 +26,16 @@ public class MoveHistoryPanel extends JPanel {
     private JScrollPane scrollPane;
     private JPanel movesPanel;
     private int currentMoveNumber = 1;
+    
+    // Constantes para el estilo
+    private static final Color BACKGROUND_COLOR = new Color(240, 240, 240);
+    private static final Color PANEL_COLOR = new Color(255, 255, 255);
+    private static final Color BORDER_COLOR = new Color(200, 200, 200);
+    private static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 16);
+    private static final Font MOVE_FONT = new Font("Arial", Font.PLAIN, 14);
+    private static final Font NUMBER_FONT = new Font("Arial", Font.BOLD, 14);
+    private static final int PADDING = 10;
+    private static final int MOVE_SPACING = 5;
 
     /**
      * Constructor que inicializa el panel de historial de movimientos.
@@ -31,29 +44,43 @@ public class MoveHistoryPanel extends JPanel {
     public MoveHistoryPanel() {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(200, 400));
+        setBackground(BACKGROUND_COLOR);
         
         // Panel para los números de jugada
         JPanel numbersPanel = new JPanel();
         numbersPanel.setLayout(new BoxLayout(numbersPanel, BoxLayout.Y_AXIS));
+        numbersPanel.setBackground(PANEL_COLOR);
+        numbersPanel.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
         
         // Panel para las jugadas
         movesPanel = new JPanel();
         movesPanel.setLayout(new BoxLayout(movesPanel, BoxLayout.Y_AXIS));
+        movesPanel.setBackground(PANEL_COLOR);
+        movesPanel.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
         
         // Panel contenedor con scroll
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BorderLayout());
+        contentPanel.setBackground(PANEL_COLOR);
         contentPanel.add(numbersPanel, BorderLayout.WEST);
         contentPanel.add(movesPanel, BorderLayout.CENTER);
         
+        // Añadir borde al panel de contenido
+        contentPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(BORDER_COLOR),
+            BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING)
+        ));
+        
         scrollPane = new JScrollPane(contentPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         
         add(scrollPane, BorderLayout.CENTER);
         
-        // Título
+        // Título con estilo mejorado
         JLabel title = new JLabel("Move History", SwingConstants.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 16));
+        title.setFont(TITLE_FONT);
+        title.setBorder(BorderFactory.createEmptyBorder(PADDING, 0, PADDING, 0));
         add(title, BorderLayout.NORTH);
     }
 
@@ -63,24 +90,40 @@ public class MoveHistoryPanel extends JPanel {
      */
     public void updateMoveHistory(List<String> fenHistory) {
         movesPanel.removeAll();
-        currentMoveNumber = 1; // Reiniciar el contador
+        currentMoveNumber = 1;
         
         JPanel currentMovePanel = new JPanel();
-        currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
-        currentMovePanel.add(new JLabel(currentMoveNumber + "."));
+        currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, MOVE_SPACING, 0));
+        currentMovePanel.setBackground(PANEL_COLOR);
+        
+        // Número de jugada con estilo
+        JLabel numberLabel = new JLabel(currentMoveNumber + ".");
+        numberLabel.setFont(NUMBER_FONT);
+        numberLabel.setForeground(new Color(100, 100, 100));
+        currentMovePanel.add(numberLabel);
         
         for (int i = 1; i < fenHistory.size(); i++) {
             String move = convertFENtoMove(fenHistory.get(i-1), fenHistory.get(i));
             
             if (i % 2 == 1) { // Jugada blanca
-                currentMovePanel.add(new JLabel(move));
+                JLabel moveLabel = createMoveLabel(move);
+                currentMovePanel.add(moveLabel);
             } else { // Jugada negra
-                currentMovePanel.add(new JLabel(move));
+                JLabel moveLabel = createMoveLabel(move);
+                currentMovePanel.add(moveLabel);
+                
+                // Añadir el panel actual y crear uno nuevo
                 movesPanel.add(currentMovePanel);
                 currentMovePanel = new JPanel();
-                currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
-                currentMoveNumber++; // Incrementar solo después de la jugada negra
-                currentMovePanel.add(new JLabel(currentMoveNumber + "."));
+                currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, MOVE_SPACING, 0));
+                currentMovePanel.setBackground(PANEL_COLOR);
+                
+                // Incrementar el número y crear nuevo label
+                currentMoveNumber++;
+                numberLabel = new JLabel(currentMoveNumber + ".");
+                numberLabel.setFont(NUMBER_FONT);
+                numberLabel.setForeground(new Color(100, 100, 100));
+                currentMovePanel.add(numberLabel);
             }
         }
         
@@ -89,12 +132,31 @@ public class MoveHistoryPanel extends JPanel {
             movesPanel.add(currentMovePanel);
         }
         
+        // Añadir un panel vacío al final para mejor espaciado
+        movesPanel.add(Box.createVerticalStrut(PADDING));
+        
         revalidate();
         repaint();
         
         // Auto-scroll al final
         JScrollBar vertical = scrollPane.getVerticalScrollBar();
         vertical.setValue(vertical.getMaximum());
+    }
+
+    /**
+     * Crea un label para un movimiento con el estilo apropiado.
+     */
+    private JLabel createMoveLabel(String move) {
+        JLabel label = new JLabel(move);
+        label.setFont(MOVE_FONT);
+        
+        // Añadir tooltip con información del movimiento
+        label.setToolTipText("Move: " + move);
+        
+        // Añadir padding
+        label.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        
+        return label;
     }
 
     /**

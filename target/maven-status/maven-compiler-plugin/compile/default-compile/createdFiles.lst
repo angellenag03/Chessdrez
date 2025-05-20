@@ -1,12 +1,15 @@
 main\Main.class
 pieces\Knight.class
 pieces\King.class
+main\MoveHistoryPanel.class
 main\CheckScanner.class
 pieces\Pawn.class
 pieces\Rook.class
 sfx\SFXManager.class
 main\Move.class
 pieces\Queen.class
+main\FEN.class
+screens\Game.class
 pieces\Bishop.class
 main\Board.class
 main\Input.class

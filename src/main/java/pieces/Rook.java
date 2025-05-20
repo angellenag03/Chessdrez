@@ -31,7 +31,7 @@ public class Rook extends Piece{
     public boolean isValidMovement(int col, int row) {
         return this.col == col || this.row == row;
     }
-    
+    @Override
     public boolean moveCollidesWithPiece(int col, int row) {
         // left
         if (this.col > col)
@@ -39,7 +39,7 @@ public class Rook extends Piece{
                 if (board.getPiece(c, this.row) != null )   
                     return true;
         // right
-        if (this.col > col)
+        if (this.col < col)
             for (int c = this.col + 1; c < col; c++) 
                 if (board.getPiece(c, this.row) != null )   
                     return true;
@@ -49,7 +49,7 @@ public class Rook extends Piece{
                 if (board.getPiece(this.col, r) != null )   
                     return true;
         // down
-        if (this.row > row)
+        if (this.row < row)
             for (int r = this.row + 1; r < row; r++) 
                 if (board.getPiece(this.col, r) != null )   
                     return true;

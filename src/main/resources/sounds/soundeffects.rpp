@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "7.11/win64" 1747424781
+<REAPER_PROJECT 0.1 "7.11/win64" 1747469894
   <NOTES 0 2
   >
   RIPPLE 0
@@ -19,8 +19,8 @@
   PANMODE 3
   PANLAWFLAGS 3
   CURSOR 0
-  ZOOM 392.51779035588595 0 0
-  VZOOMEX 4 8
+  ZOOM 198.12061739150045 0 0
+  VZOOMEX 4 0
   USE_REC_CFG 0
   RECMODE 1
   SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
@@ -106,7 +106,7 @@
     AUTOMODE 0
     PANLAWFLAGS 3
     VOLPAN 0.49866990604774 0 -1 -1 1
-    MUTESOLO 1 0 0
+    MUTESOLO 0 0 0
     IPHASE 0
     PLAYOFFS 0 1
     ISBUS 0 0
@@ -127,7 +127,7 @@
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 17.14285714285714
+      LENGTH 36.07142857142857
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0 0 1 0 0 0
@@ -342,9 +342,215 @@
       CHANMODE 0
       GUID {B708C297-15E7-42EC-8338-25C8E34F86ED}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\start-glued.wav"
+        FILE "Media\start-glued.wav"
       >
     >
+  >
+  <TRACK {76FAC670-1104-441F-BBF8-69E47E58C938}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 0.53526003901476 0 -1 -1 1
+    MUTESOLO 0 2 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0
+    SEL 1
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {76FAC670-1104-441F-BBF8-69E47E58C938}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 23 51 870 502
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: sforzando (Plogue Art et Technologie, Inc)" sforzando.vst3 0 "" 395535903{5C5CA79682FC437AB6539BA204BAB349} ""
+        H2aTF+5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAADvAQAAAQAAAP//EAA=
+        3wEAAAEAAAAAAAAA1wEAAENFR1D+BAAAeJyNVE2PmzAQvVfqf7B838ROIFmk0FXaXVUcolZNekaD42SttQ0Fg7b/voMTPg5dARc8z28+rTe7p3ejSSPLSuU2pnzBKHn6
+        8vnTbl8qOEIjR3fRdk1JUebnWrjkGQHGA4pcgt/uKJ1T9lqRPzVo5f7iNSWVKyUYhGO6XlFi4P3okb3WuTh8jWnIET4kz8mP2h3ys/ReULvcgMOkR527mLIxpGUjdUyV
+        xdi1kdZRolUjb87IrATGCNs/aECEkwci25oWldB3+Bu6yTKmG+RfdZ6BPtXWV4nAsu8IkxN19qAFg+Gry2oZbtP0F9ZinRKpK9IWY4wN2KmgJAP7lqBngDd0mCCexStY
+        2zbwgI0WucY5bQJK3JC/yNIS7FXeKQ6Nyl+Y0TEXDt9maBgfxtTOA/fyfQsHULZroQFd3+a7/C+F9xT2EWU1TVlPU4JpSjhN2UxTttOUx2lKNE3hbAZnxnz5jAHzGRPm
+        M0bMP57xTyjB3JONql5swzBiYcgeoyhk4WY10sqyFUtnvFwuUrixfDpR3mS0N5mSVshBJ36TjDdNEPlNI3pZ95m+/066qCAcKj8ZloS3X3q7khrrkOcTZDcxtUF2y26z
+        ofEPrxFR2QAAAAAAAAAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {11B90201-ACEF-4B0F-81B6-EED38FCDFEA8}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaDelay (Cockos)" readelay.dll 0 "" 1919247468<5653547265646C72656164656C617900> ""
+        bGRlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAATAAAAAEAAAAAABAA
+        AAAAAAAAAAABAAAALAAAAAIAAAAAAAAAQwIAPwAAgD8AAAAAAACAPwAAAAAAAEA7AG7iPgAAgD8AAAAAAACAPwAAgD8AAIA/AAAAPw==
+        AAAQAAAA
+      >
+      FLOATPOS 23 51 694 477
+      FXID {19D65C58-17E3-4487-AA6C-50FABD5D37C1}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      SNAPOFFS 0
+      LENGTH 1.42857142857143
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0 0
+      FADEOUT 1 0 0 1 0 0 0
+      MUTE 0 0
+      SEL 1
+      IGUID {1593D27C-AD17-4F85-AB53-B866D630D6D8}
+      IID 64
+      NAME 05-MIDI
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1.33333333333333 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {64E24A6C-E463-437D-A850-F5F7660D527D}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {5A2AF738-259C-453D-B1AA-854D4D82022E}
+        E 0 90 32 60
+        E 640 90 2f 60
+        E 640 90 2c 60
+        E 640 80 32 00
+        E 0 80 2f 00
+        E 0 80 2c 00
+        e 0 90 31 60
+        e 0 90 36 60
+        e 0 90 38 60
+        e 0 90 25 60
+        e 0 90 3d 60
+        e 3200 80 31 00
+        e 0 80 36 00
+        e 0 80 38 00
+        e 0 80 25 00
+        e 0 80 3d 00
+        E 0 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {DDB5FC03-1670-48F4-966A-1598FA4890C0}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 36272
+        VELLANE 128 100 0 0 1
+        CFGEDITVIEW 0 0.176302 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 189
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 0 1 1 1 0.25 952 0 1928 1028 0 0 0 0 0 0 0 1 0 0.56 0 0 1 64
+      >
+    >
+  >
+  <TRACK {F7F807B0-88B1-4DE8-AD9F-5B30F23C5669}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 2 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {F7F807B0-88B1-4DE8-AD9F-5B30F23C5669}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+    >
+    <ITEM
+      POSITION 0
+      SNAPOFFS 0
+      LENGTH 1.42857142857143
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0 0
+      FADEOUT 1 0 0 1 0 0 0
+      MUTE 0 0
+      SEL 1
+      IGUID {34632995-1607-4173-A9FE-3C4A6FEADE14}
+      IID 66
+      NAME 06-MIDI
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {F0E5C788-E494-45F9-85CD-43A38DE43181}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {A3FFF976-9747-40A8-8018-CCA7625E169D}
+        E 0 90 32 60
+        E 960 80 32 00
+        E 0 90 31 60
+        E 480 80 31 00
+        e 0 90 2f 60
+        e 2400 80 2f 00
+        E 0 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4D68A45A-57BD-4C4A-81FB-5F26E794F70B}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 36273
+        VELLANE 128 100 0 0 1
+        CFGEDITVIEW 0 0.176302 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 189
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 0 1 1 1 0.25 952 0 1928 1028 0 0 0 0 0 0 0 1 0 0.56 0 0 1 64
+      >
+    >
+  >
+  <TRACK {2C97A834-8E58-404B-A238-5BC715D47F11}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    PANLAWFLAGS 3
+    VOLPAN 1 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FIXEDLANES 9 0 0
+    SEL 0
+    REC 0 0 1 0 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0 0 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {2C97A834-8E58-404B-A238-5BC715D47F11}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
   >
   <TRACK {807D36AF-D9DE-48EC-B839-D652C7194B3B}
     NAME put0
@@ -360,7 +566,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -450,7 +656,7 @@
       CHANMODE 0
       GUID {A4C6A046-B51D-42FA-9B0F-193C16466AAB}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_put0.wav"
+        FILE "Media\soundeffects_freeze_put0.wav"
       >
     >
   >
@@ -468,7 +674,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -560,7 +766,7 @@
       CHANMODE 0
       GUID {D6A3B99E-B453-4714-9B4E-1F2DF8CFC1F0}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_put1.wav"
+        FILE "Media\soundeffects_freeze_put1.wav"
       >
     >
   >
@@ -578,7 +784,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -670,7 +876,7 @@
       CHANMODE 0
       GUID {C2AA61B5-4A86-4C67-AD22-A6DE332B29DE}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_put02.wav"
+        FILE "Media\soundeffects_freeze_put02.wav"
       >
     >
   >
@@ -688,7 +894,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -780,7 +986,7 @@
       CHANMODE 0
       GUID {A25C22D3-54FB-4B1C-87C9-07728F384BDA}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_put03.wav"
+        FILE "Media\soundeffects_freeze_put03.wav"
       >
     >
   >
@@ -798,7 +1004,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -890,7 +1096,7 @@
       CHANMODE 0
       GUID {77EA0E55-01C6-4E69-B24D-407DFE35B7D4}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_grab0.wav"
+        FILE "Media\soundeffects_freeze_grab0.wav"
       >
     >
   >
@@ -908,7 +1114,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1000,7 +1206,7 @@
       CHANMODE 0
       GUID {2C289770-A4B7-42B7-A033-EFD5F6FF5D31}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_grab1.wav"
+        FILE "Media\soundeffects_freeze_grab1.wav"
       >
     >
   >
@@ -1018,7 +1224,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1110,7 +1316,7 @@
       CHANMODE 0
       GUID {81B4D791-BD97-4A2E-AD5A-DCA5E1C4431E}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_grab2.wav"
+        FILE "Media\soundeffects_freeze_grab2.wav"
       >
     >
   >
@@ -1128,7 +1334,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1214,7 +1420,7 @@
       CHANMODE 0
       GUID {DADCB082-AB71-4D6B-B456-E141BF88215E}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_grab3.wav"
+        FILE "Media\soundeffects_freeze_grab3.wav"
       >
     >
   >
@@ -1232,7 +1438,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1318,7 +1524,7 @@
       CHANMODE 0
       GUID {E00C902C-A436-47E8-A0D2-500D13CE1555}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_delete0.wav"
+        FILE "Media\soundeffects_freeze_delete0.wav"
       >
     >
   >
@@ -1336,7 +1542,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1422,7 +1628,7 @@
       CHANMODE 0
       GUID {A6F9FB9C-B1E1-4F76-91D0-7295C16BC377}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_delete1.wav"
+        FILE "Media\soundeffects_freeze_delete1.wav"
       >
     >
   >
@@ -1440,7 +1646,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1526,7 +1732,7 @@
       CHANMODE 0
       GUID {1EC2F231-A006-4ACF-B63D-3752C34FCC14}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_delete2.wav"
+        FILE "Media\soundeffects_freeze_delete2.wav"
       >
     >
   >
@@ -1544,7 +1750,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FIXEDLANES 9 0 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 0 0 0
@@ -1630,7 +1836,7 @@
       CHANMODE 0
       GUID {20CED42B-BC0F-4F28-8645-BB85B8FE565C}
       <SOURCE WAVE
-        FILE "C:\Users\pausa\Documents\NetBeansProjects\Chessdrez\Chessdrez\src\main\resources\sounds\Media\soundeffects_freeze_delete3.wav"
+        FILE "Media\soundeffects_freeze_delete3.wav"
       >
     >
   >
@@ -1653,6 +1859,9 @@
       {B09E2290-5275-4DED-B7CB-C97A963DEF6F} 0 "" "" ""
       {5CBBEA68-03C9-4004-90F6-CB4DCBE1CDD4} 0 "" "" ""
       {5343368E-22F9-4E7C-9E78-15BB6B4ADFC0} 0 "" "" ""
+      {76FAC670-1104-441F-BBF8-69E47E58C938} 0 "" "" ""
+      {2C97A834-8E58-404B-A238-5BC715D47F11} 0 "" "" ""
+      {F7F807B0-88B1-4DE8-AD9F-5B30F23C5669} 0 "" "" ""
     >
   >
 >

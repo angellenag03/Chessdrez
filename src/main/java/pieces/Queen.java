@@ -27,6 +27,7 @@ public class Queen extends Piece{
                 getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
     }
     
+    @Override
     public boolean isValidMovement(int col, int row) {
         // movimiento de torre
         return this.col == col || this.row == row || 
@@ -34,32 +35,32 @@ public class Queen extends Piece{
                 Math.abs(this.col - col) == (Math.abs(this.row - row));
     }
     
+    @Override
     public boolean moveCollidesWithPiece(int col, int row) {
         // si se mueve como torre
         if (this.col == col || this.row == row) {
             // left
             if (this.col > col)
                 for (int c = this.col - 1; c > col; c--) 
-                    if (board.getPiece(c, this.row) != null )   
+                    if (board.getPiece(c, this.row) != null)   
                         return true;
             // right
-            if (this.col > col)
+            if (this.col < col)  // CORREGIDO
                 for (int c = this.col + 1; c < col; c++) 
-                    if (board.getPiece(c, this.row) != null )   
+                    if (board.getPiece(c, this.row) != null)   
                         return true;
             // up
             if (this.row > row)
                 for (int r = this.row - 1; r > row; r--) 
-                    if (board.getPiece(this.col, r) != null )   
+                    if (board.getPiece(this.col, r) != null)   
                         return true;
             // down
-            if (this.row > row)
+            if (this.row < row)  // CORREGIDO
                 for (int r = this.row + 1; r < row; r++) 
-                    if (board.getPiece(this.col, r) != null )   
+                    if (board.getPiece(this.col, r) != null)   
                         return true;
-
-        // si no lo hace    
         } else {
+            // movimiento diagonal (como alfil)
             int colDirection = Integer.compare(col, this.col);
             int rowDirection = Integer.compare(row, this.row);
 
@@ -74,7 +75,6 @@ public class Queen extends Piece{
                 currentRow += rowDirection;
             }
         }
-        
         return false;
     }
 }

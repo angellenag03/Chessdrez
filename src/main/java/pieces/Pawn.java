@@ -27,6 +27,7 @@ public class Pawn extends Piece{
                 getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
     }
     
+    @Override
     public boolean isValidMovement(int col, int row) { 
         int colorIndex = isWhite ? 1 : -1;
         // push pawn 1
@@ -53,5 +54,6 @@ public class Pawn extends Piece{
             return true;
         return false;
     }
+
 }
 

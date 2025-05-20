@@ -22,13 +22,13 @@ public class CheckScanner {
         
         int kingCol = king.col;
         int kingRow = king.row;
-        
         if (board.selectedPiece != null && board.selectedPiece.name.equals("King")) {
             kingCol = move.newCol;
             kingRow = move.newRow;
         }
         
-        boolean currentCheckState = hitByRook   (move.newCol, move.newRow, king, kingCol, kingRow, 0, 1) || // up
+        boolean currentCheckState = 
+                hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, 0, 1) || // up
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, 1, 0) || // right
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, 0, -1) || // down
                 hitByRook  (move.newCol, move.newRow, king, kingCol, kingRow, -1, 0) || // left
@@ -54,11 +54,11 @@ public class CheckScanner {
     private boolean hitByRook(int col, int row, 
             Piece king, int kingCol, int kingRow, int colVal, int rowVal) 
     {
-        for (int i = 0; i < 8; i++) {
-            if (kingCol + (i * colVal) == col && kingRow + (i + rowVal) == row)
+        for (int i = 1; i < 8; i++) {  // Empezar desde 1, no desde 0
+            if (kingCol + (i * colVal) == col && kingRow + (i * rowVal) == row)
                 break;
-            
-            Piece piece = board.getPiece(kingCol + (i * colVal), kingRow + (i + rowVal));
+
+            Piece piece = board.getPiece(kingCol + (i * colVal), kingRow + (i * rowVal));
             if (piece != null && piece != board.selectedPiece) {
                 if (!board.sameTeam(piece, king) && (piece.name.equals("Rook") || piece.name.equals("Queen"))) {
                     return true;
@@ -72,11 +72,11 @@ public class CheckScanner {
     private boolean hitByBishop(int col, int row, 
             Piece king, int kingCol, int kingRow, int colVal, int rowVal) 
     {
-        for (int i = 0; i < 8; i++) {
-            if (kingCol - (i * colVal) == col && kingRow - (i * rowVal) == row) 
+        for (int i = 1; i < 8; i++) {  // Empezar desde 1
+            if (kingCol + (i * colVal) == col && kingRow + (i * rowVal) == row) 
                 break;
- 
-            Piece piece = board.getPiece(kingCol + (i * colVal), kingRow + (i + rowVal));
+
+            Piece piece = board.getPiece(kingCol + (i * colVal), kingRow + (i * rowVal));
             if (piece != null && piece != board.selectedPiece) {
                 if (!board.sameTeam(piece, king) && (piece.name.equals("Bishop") || piece.name.equals("Queen")))
                     return true;
@@ -127,6 +127,32 @@ public class CheckScanner {
     
     private boolean checkPawn(Piece p, Piece k, int col, int row) {
         return p != null && !board.sameTeam(p, k) && p.name.equals("Pawn");
+    }
+    
+    public boolean isGameOver(Piece king) {
+        if (king == null) return false;
+
+        for (Piece piece : board.pieceList) {
+            if (board.sameTeam(piece, king)){
+                // Guardar la pieza seleccionada actual
+                Piece prevSelected = board.selectedPiece;
+                board.selectedPiece = piece;
+
+                for (int row = 0; row < board.rows; row++) {
+                    for (int col = 0; col < board.cols; col++){
+                        Move move = new Move(board, piece, col, row);
+                        if (board.isValidMove(move)){
+                            // Si encuentra al menos un movimiento válido, no es game over
+                            board.selectedPiece = prevSelected;
+                            return false;
+                        }
+                    }
+                }
+                board.selectedPiece = prevSelected;
+            }
+        }
+        // No se encontraron movimientos válidos = Game Over
+        return true;
     }
     
 }

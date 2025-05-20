@@ -3,20 +3,19 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import utils.FontLoader;
 
@@ -25,36 +24,35 @@ import utils.FontLoader;
  * Utiliza notación algebraica para representar los movimientos.
  */
 public class MoveHistoryPanel extends JPanel {
-    private JTextArea moveHistoryText;
+    private JTable moveHistoryTable;
     private JScrollPane scrollPane;
-    private JPanel movesPanel;
-    private int currentMoveNumber = 1;
+    private DefaultTableModel tableModel;
     
     // Constantes para el estilo
-    private static final Color BACKGROUND_COLOR = new Color(240, 240, 240);
-    private static final Color PANEL_COLOR = new Color(255, 255, 255);
-    private static final Color BORDER_COLOR = new Color(200, 200, 200);
+    private static final Color BACKGROUND_COLOR = new Color(41, 41, 50);
+    private static final Color PANEL_COLOR = new Color(51, 51, 60);
+    private static final Color BORDER_COLOR = new Color(51, 51, 60);
+    private static final Color TEXT_COLOR = new Color(250, 255, 224);
+    private static final Color SCROLLBAR_COLOR = new Color(61, 61, 70);
+    private static final Color SCROLLBAR_THUMB_COLOR = new Color(81, 81, 90);
+    private static final Color TABLE_GRID_COLOR = new Color(71, 71, 80);
     
     // Fuentes personalizadas
     private static Font TITLE_FONT;
-    private static Font MOVE_FONT;
-    private static Font NUMBER_FONT;
+    private static Font TABLE_FONT;
     
     static {
         try {
-            TITLE_FONT = FontLoader.loadFont(18f);
-            MOVE_FONT = FontLoader.loadFont(16f);
-            NUMBER_FONT = FontLoader.loadFont(16f);
+            TITLE_FONT = FontLoader.loadFont(26f);
+            TABLE_FONT = FontLoader.loadFont(24f);
         } catch (IOException e) {
             // Si hay error, usar fuentes por defecto
-            TITLE_FONT = new Font("Century Gothic", Font.BOLD, 18);
-            MOVE_FONT = new Font("Century Gothic", Font.PLAIN, 16);
-            NUMBER_FONT = new Font("Century Gothic", Font.BOLD, 16);
+            TITLE_FONT = new Font("Century Gothic", Font.BOLD, 26);
+            TABLE_FONT = new Font("Century Gothic", Font.PLAIN, 24);
         }
     }
     
     private static final int PADDING = 10;
-    private static final int MOVE_SPACING = 5;
 
     /**
      * Constructor que inicializa el panel de historial de movimientos.
@@ -65,42 +63,71 @@ public class MoveHistoryPanel extends JPanel {
         setPreferredSize(new Dimension(200, 400));
         setBackground(BACKGROUND_COLOR);
         
-        // Panel para los números de jugada
-        JPanel numbersPanel = new JPanel();
-        numbersPanel.setLayout(new BoxLayout(numbersPanel, BoxLayout.Y_AXIS));
-        numbersPanel.setBackground(PANEL_COLOR);
-        numbersPanel.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
+        // Crear el modelo de tabla
+        tableModel = new DefaultTableModel(new String[]{"#", "W", "B"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         
-        // Panel para las jugadas
-        movesPanel = new JPanel();
-        movesPanel.setLayout(new BoxLayout(movesPanel, BoxLayout.Y_AXIS));
-        movesPanel.setBackground(PANEL_COLOR);
-        movesPanel.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
+        // Crear la tabla
+        moveHistoryTable = new JTable(tableModel);
+        moveHistoryTable.setFont(TABLE_FONT);
+        moveHistoryTable.setForeground(TEXT_COLOR);
+        moveHistoryTable.setBackground(PANEL_COLOR);
+        moveHistoryTable.setGridColor(TABLE_GRID_COLOR);
+        moveHistoryTable.setShowGrid(true);
+        moveHistoryTable.setRowHeight(35);
         
-        // Panel contenedor con scroll
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BorderLayout());
-        contentPanel.setBackground(PANEL_COLOR);
-        contentPanel.add(numbersPanel, BorderLayout.WEST);
-        contentPanel.add(movesPanel, BorderLayout.CENTER);
+        // Alinear la columna de números a la derecha
+        moveHistoryTable.getColumnModel().getColumn(0).setHeaderRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+            {
+                setHorizontalAlignment(SwingConstants.RIGHT);
+            }
+        });
+        moveHistoryTable.getColumnModel().getColumn(0).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+            {
+                setHorizontalAlignment(SwingConstants.RIGHT);
+            }
+        });
         
-        // Añadir borde al panel de contenido
-        contentPanel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER_COLOR),
-            BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING)
-        ));
+        // Personalizar el encabezado de la tabla
+        JTableHeader header = moveHistoryTable.getTableHeader();
+        header.setFont(TABLE_FONT);
+        header.setBackground(PANEL_COLOR);
+        header.setForeground(TEXT_COLOR);
+        header.setBorder(BorderFactory.createLineBorder(TABLE_GRID_COLOR));
         
-        scrollPane = new JScrollPane(contentPanel);
+        // Ajustar el ancho de las columnas
+        TableColumnModel columnModel = moveHistoryTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(40);  // Columna de número
+        columnModel.getColumn(1).setPreferredWidth(80);  // Columna de blancas
+        columnModel.getColumn(2).setPreferredWidth(80);  // Columna de negras
+        
+        // Configurar el scroll pane
+        scrollPane = new JScrollPane(moveHistoryTable);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setBackground(BACKGROUND_COLOR);
         
-        add(scrollPane, BorderLayout.CENTER);
+        // Personalizar la barra de desplazamiento
+        scrollPane.getVerticalScrollBar().setBackground(SCROLLBAR_COLOR);
+        scrollPane.getVerticalScrollBar().setForeground(SCROLLBAR_THUMB_COLOR);
+        scrollPane.getVerticalScrollBar().setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(12, 0));
+        
+        // Personalizar el viewport
+        scrollPane.getViewport().setBackground(BACKGROUND_COLOR);
         
         // Título con estilo mejorado
         JLabel title = new JLabel("Move History", SwingConstants.CENTER);
         title.setFont(TITLE_FONT);
+        title.setForeground(TEXT_COLOR);
         title.setBorder(BorderFactory.createEmptyBorder(PADDING, 0, PADDING, 0));
+        
         add(title, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     /**
@@ -108,74 +135,28 @@ public class MoveHistoryPanel extends JPanel {
      * @param fenHistory Lista de strings FEN que representan el estado del tablero en cada movimiento
      */
     public void updateMoveHistory(List<String> fenHistory) {
-        movesPanel.removeAll();
-        currentMoveNumber = 1;
+        // Limpiar la tabla
+        tableModel.setRowCount(0);
         
-        JPanel currentMovePanel = new JPanel();
-        currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, MOVE_SPACING, 0));
-        currentMovePanel.setBackground(PANEL_COLOR);
-        
-        // Número de jugada con estilo
-        JLabel numberLabel = new JLabel(currentMoveNumber + ".");
-        numberLabel.setFont(NUMBER_FONT);
-        numberLabel.setForeground(new Color(100, 100, 100));
-        currentMovePanel.add(numberLabel);
-        
-        for (int i = 1; i < fenHistory.size(); i++) {
-            String move = convertFENtoMove(fenHistory.get(i-1), fenHistory.get(i));
+        // Procesar los movimientos
+        for (int i = 1; i < fenHistory.size(); i += 2) {
+            String whiteMove = convertFENtoMove(fenHistory.get(i-1), fenHistory.get(i));
+            String blackMove = (i + 1 < fenHistory.size()) ? 
+                             convertFENtoMove(fenHistory.get(i), fenHistory.get(i+1)) : "";
             
-            if (i % 2 == 1) { // Jugada blanca
-                JLabel moveLabel = createMoveLabel(move);
-                currentMovePanel.add(moveLabel);
-            } else { // Jugada negra
-                JLabel moveLabel = createMoveLabel(move);
-                currentMovePanel.add(moveLabel);
-                
-                // Añadir el panel actual y crear uno nuevo
-                movesPanel.add(currentMovePanel);
-                currentMovePanel = new JPanel();
-                currentMovePanel.setLayout(new FlowLayout(FlowLayout.LEFT, MOVE_SPACING, 0));
-                currentMovePanel.setBackground(PANEL_COLOR);
-                
-                // Incrementar el número y crear nuevo label
-                currentMoveNumber++;
-                numberLabel = new JLabel(currentMoveNumber + ".");
-                numberLabel.setFont(NUMBER_FONT);
-                numberLabel.setForeground(new Color(100, 100, 100));
-                currentMovePanel.add(numberLabel);
-            }
+            tableModel.addRow(new Object[]{
+                (i/2 + 1) + ".",
+                whiteMove,
+                blackMove
+            });
         }
-        
-        // Añadir última jugada si es necesario
-        if (fenHistory.size() % 2 == 0) {
-            movesPanel.add(currentMovePanel);
-        }
-        
-        // Añadir un panel vacío al final para mejor espaciado
-        movesPanel.add(Box.createVerticalStrut(PADDING));
-        
-        revalidate();
-        repaint();
         
         // Auto-scroll al final
-        JScrollBar vertical = scrollPane.getVerticalScrollBar();
-        vertical.setValue(vertical.getMaximum());
-    }
-
-    /**
-     * Crea un label para un movimiento con el estilo apropiado.
-     */
-    private JLabel createMoveLabel(String move) {
-        JLabel label = new JLabel(move);
-        label.setFont(MOVE_FONT);
-        
-        // Añadir tooltip con información del movimiento
-        label.setToolTipText("Move: " + move);
-        
-        // Añadir padding
-        label.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        
-        return label;
+        if (moveHistoryTable.getRowCount() > 0) {
+            moveHistoryTable.scrollRectToVisible(
+                moveHistoryTable.getCellRect(moveHistoryTable.getRowCount() - 1, 0, true)
+            );
+        }
     }
 
     /**

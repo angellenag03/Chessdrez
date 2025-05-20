@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 /**
  *
- * @author Ricardo
+ * @author Ricardo & angelsn
  */
 public class FontLoader {
     

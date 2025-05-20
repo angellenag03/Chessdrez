@@ -8,6 +8,7 @@ main\CheckScanner.class
 pieces\Pawn.class
 pieces\Rook.class
 sfx\SFXManager.class
+screens\MainMenu$1.class
 main\Move.class
 pieces\Queen.class
 main\FEN.class

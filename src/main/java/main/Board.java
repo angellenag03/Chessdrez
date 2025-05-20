@@ -6,8 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JPanel;
-import pieces.*;
+
+import pieces.Piece;
+import pieces.Queen;
 import sfx.SFXManager;
 
 public class Board extends JPanel {
@@ -258,8 +261,10 @@ public class Board extends JPanel {
             System.out.println("\n" + "=".repeat(50));
             if (isInCheck) {
                 System.out.println("CHECKMATE! " + (!isWhiteToMove ? "White" : "Black") + " Wins!");
+                sfx.playSound("checkmate");
             } else {
                 System.out.println("STALEMATE! Draw game.");
+                sfx.playSound("stalemate");
             }
             System.out.println("Final FEN: " + generateFEN());
             System.out.println("=".repeat(50));

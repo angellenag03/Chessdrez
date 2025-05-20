@@ -1,4 +1,3 @@
-
 package main;
 
 import pieces.Piece;
@@ -132,27 +131,36 @@ public class CheckScanner {
     public boolean isGameOver(Piece king) {
         if (king == null) return false;
 
+        // Primero verificamos si el rey está en jaque
+        boolean isInCheck = isKingChecked(new Move(board, king, king.col, king.row));
+        
+        // Verificamos si hay movimientos legales disponibles
+        boolean hasLegalMoves = false;
+        
         for (Piece piece : board.pieceList) {
-            if (board.sameTeam(piece, king)){
+            if (board.sameTeam(piece, king)) {
                 // Guardar la pieza seleccionada actual
                 Piece prevSelected = board.selectedPiece;
                 board.selectedPiece = piece;
 
                 for (int row = 0; row < board.rows; row++) {
-                    for (int col = 0; col < board.cols; col++){
+                    for (int col = 0; col < board.cols; col++) {
                         Move move = new Move(board, piece, col, row);
-                        if (board.isValidMove(move)){
-                            // Si encuentra al menos un movimiento válido, no es game over
-                            board.selectedPiece = prevSelected;
-                            return false;
+                        if (board.isValidMove(move)) {
+                            hasLegalMoves = true;
+                            break;
                         }
                     }
+                    if (hasLegalMoves) break;
                 }
                 board.selectedPiece = prevSelected;
+                if (hasLegalMoves) break;
             }
         }
-        // No se encontraron movimientos válidos = Game Over
-        return true;
+        
+        // Si el rey está en jaque y no hay movimientos legales, es jaquemate
+        // Si el rey no está en jaque y no hay movimientos legales, es tablas
+        return !hasLegalMoves;
     }
     
 }

@@ -1,6 +1,6 @@
 package main;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import pieces.Piece;
 
 /**
@@ -217,9 +217,10 @@ public class CheckScanner {
      * @return True si no hay movimientos legales, False si hay al menos uno.
      */
     public boolean noValidMoves(boolean isWhite) {
-        Iterator<Piece> iterator = board.pieceList.iterator();
-        while (iterator.hasNext()) {
-            Piece piece = iterator.next();
+        // Crear una copia para iterar
+        ArrayList<Piece> piecesToCheck = new ArrayList<>(board.pieceList);
+
+        for (Piece piece : piecesToCheck) {  // Iterar sobre la copia
             if (piece.isWhite == isWhite) {
                 for (int row = 0; row < board.rows; row++) {
                     for (int col = 0; col < board.cols; col++) {

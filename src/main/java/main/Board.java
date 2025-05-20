@@ -446,10 +446,6 @@ public class Board extends JPanel {
         }
     }
 
-    public void setMoveHistoryPanel(MoveHistoryPanel panel) {
-        this.moveHistoryPanel = panel;
-    }
-    
     /**
      * Actualiza el estado general del juego (jaque mate, tablas).
      * @return true si la partida terminó en jaque mate, false en caso contrario.

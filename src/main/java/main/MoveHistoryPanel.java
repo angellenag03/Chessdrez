@@ -173,7 +173,7 @@ public class MoveHistoryPanel extends JPanel {
                     }
                  }
             }
-
+            sfx.updateCheckState(isInCheck);
             tableModel.addRow(new Object[]{
                 (i/2 + 1) + ".",
                 whiteMove,

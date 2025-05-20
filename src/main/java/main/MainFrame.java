@@ -1,12 +1,16 @@
 package main;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import screens.CreditsScreen;
 import screens.Game;
 import screens.MainMenu;
+import sfx.SFXManager;
 
 /**
  *
@@ -17,7 +21,7 @@ public class MainFrame extends JFrame {
     private JPanel cards;
     
     public MainFrame() {
-        setTitle("Chess Game");
+        setTitle("ADREJEZ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700);
         setLocationRelativeTo(null);
@@ -42,6 +46,16 @@ public class MainFrame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             MainFrame frame = new MainFrame();
+            frame.getContentPane().setBackground(new Color(33, 27, 47));
+            frame.setLayout(new GridBagLayout());
+            frame.setMinimumSize(new Dimension(800,00));
+            frame.setLocationRelativeTo(null);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            SFXManager sfx = SFXManager.getInstance();
+            sfx.playSong("Main Theme.wav", "Check.wav");
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            frame.setVisible(true);
+
             frame.setVisible(true);
         });
     }

@@ -153,6 +153,16 @@ public class SFXManager {
         try {
             InputStream audioSrc = getClass().getResourceAsStream("/sounds/" + soundFile);
             if (audioSrc == null) {
+                // Si falla, intentar una ruta relativa sin la barra inicial
+                audioSrc = getClass().getResourceAsStream("sounds/" + soundFile);
+            }
+            
+            if (audioSrc == null) {
+                // Intentar una tercera alternativa usando ClassLoader
+                audioSrc = getClass().getClassLoader().getResourceAsStream("sounds/" + soundFile);
+            }
+            
+            if (audioSrc == null) {
                 System.err.println("No se pudo encontrar el archivo: " + soundFile);
                 return;
             }
@@ -195,8 +205,9 @@ public class SFXManager {
             case "delete": return "delete" + variant + ".wav";
             case "grab": return "grab" + variant + ".wav";
             case "put": return "put" + variant + ".wav";
+            case "hover": return "hover.wav";  // Añadir directamente hover.wav
+            case "click": return "click.wav";  // Añadir directamente click.wav
             default: return null;
         }
     }
-    
 }

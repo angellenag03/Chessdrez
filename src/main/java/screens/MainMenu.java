@@ -20,7 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import utils.FontLoader;
+import sfx.SFXManager;
 
+/**
+ *
+ * @author Ricardo
+ */
 public class MainMenu extends JPanel {
     private CardLayout cardLayout;
     private JPanel cards;
@@ -28,6 +33,7 @@ public class MainMenu extends JPanel {
     private Font alagardFontMedium;
     private Clip hoverSound;
     private Clip clickSound;
+    private SFXManager sfxManager;
     
     public MainMenu(JPanel cards, CardLayout cardLayout) {
         // Cargar la fuente Alagard
@@ -40,6 +46,9 @@ public class MainMenu extends JPanel {
             alagardFontLarge = new Font("Century Gothic", Font.BOLD, 36);
             alagardFontMedium = new Font("Century Gothic", Font.PLAIN, 24);
         }
+        
+        // Obtener instancia del SFXManager
+        sfxManager = SFXManager.getInstance();
         
         // Cargar sonidos
         try {
@@ -115,12 +124,18 @@ public class MainMenu extends JPanel {
             BorderFactory.createEmptyBorder(10, 25, 10, 25)
         ));
         
-        // Efecto hover
+        // Efecto hover con reproducción de sonido
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(90, 70, 40));
                 button.setForeground(new Color(220, 180, 80));
+                
+                // Método 1: Usando la instancia local de sonido
                 playSound(hoverSound);
+                
+                // Método 2: Alternativa usando SFXManager
+                // Descomenta esta línea para usar SFXManager en lugar de la reproducción local
+                // sfxManager.playSound("hover");
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(new Color(70, 50, 20));
@@ -133,6 +148,10 @@ public class MainMenu extends JPanel {
     
     private void playSound(Clip sound) {
         if (sound != null) {
+            // Detener el sonido si está reproduciéndose
+            if (sound.isRunning()) {
+                sound.stop();
+            }
             sound.setFramePosition(0);
             sound.start();
         }
@@ -167,7 +186,7 @@ public class MainMenu extends JPanel {
         
         if (choice == 0) {
             cardLayout.show(cards, "Game");
-        } else {
+        } else if (choice != JOptionPane.CLOSED_OPTION) {
             JOptionPane.showMessageDialog(this, 
                 "Only Standard mode is available at this time", 
                 "Mode Not Available", 

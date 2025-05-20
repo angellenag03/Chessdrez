@@ -2,6 +2,7 @@ main\Main.class
 main\MainFrame.class
 pieces\Knight.class
 screens\CreditsScreen.class
+main\MoveHistoryPanel$2.class
 pieces\King.class
 main\MoveHistoryPanel.class
 main\CheckScanner.class
@@ -12,9 +13,11 @@ screens\MainMenu$1.class
 main\Move.class
 pieces\Queen.class
 main\FEN.class
+main\MoveHistoryPanel$3.class
 screens\Game.class
 pieces\Bishop.class
 main\Board.class
 main\Input.class
+main\MoveHistoryPanel$1.class
 screens\MainMenu.class
 pieces\Piece.class

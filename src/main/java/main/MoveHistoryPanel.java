@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -16,6 +17,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import utils.FontLoader;
 
 /**
  * Panel que muestra el historial de movimientos del juego de ajedrez.
@@ -31,9 +34,25 @@ public class MoveHistoryPanel extends JPanel {
     private static final Color BACKGROUND_COLOR = new Color(240, 240, 240);
     private static final Color PANEL_COLOR = new Color(255, 255, 255);
     private static final Color BORDER_COLOR = new Color(200, 200, 200);
-    private static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 16);
-    private static final Font MOVE_FONT = new Font("Arial", Font.PLAIN, 14);
-    private static final Font NUMBER_FONT = new Font("Arial", Font.BOLD, 14);
+    
+    // Fuentes personalizadas
+    private static Font TITLE_FONT;
+    private static Font MOVE_FONT;
+    private static Font NUMBER_FONT;
+    
+    static {
+        try {
+            TITLE_FONT = FontLoader.loadFont(18f);
+            MOVE_FONT = FontLoader.loadFont(16f);
+            NUMBER_FONT = FontLoader.loadFont(16f);
+        } catch (IOException e) {
+            // Si hay error, usar fuentes por defecto
+            TITLE_FONT = new Font("Century Gothic", Font.BOLD, 18);
+            MOVE_FONT = new Font("Century Gothic", Font.PLAIN, 16);
+            NUMBER_FONT = new Font("Century Gothic", Font.BOLD, 16);
+        }
+    }
+    
     private static final int PADDING = 10;
     private static final int MOVE_SPACING = 5;
 

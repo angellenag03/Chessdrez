@@ -21,8 +21,8 @@ import sfx.SFXManager;
 import utils.FontLoader;
 
 /**
- * Panel que muestra el historial de movimientos del juego de ajedrez.
- * Utiliza notación algebraica para representar los movimientos.
+ * 
+ * @author angelsn
  */
 public class MoveHistoryPanel extends JPanel {
     private JTable moveHistoryTable;

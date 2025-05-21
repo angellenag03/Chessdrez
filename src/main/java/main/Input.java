@@ -11,7 +11,7 @@ import sfx.SFXManager;
 
 /**
  *
- * @author pausa
+ * @author angelsn
  */
 public class Input extends MouseAdapter{
 

@@ -6,7 +6,7 @@ import main.Move;
 
 /**
  *
- * @author Ricardo
+ * @author angelsn
  */
 public class King extends Piece{
     

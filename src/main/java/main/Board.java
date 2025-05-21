@@ -411,17 +411,14 @@ public class Board extends JPanel {
             moveHistoryPanel.updateMoveHistory(gameHistory, false, isInCheck); // Pass false for isCheckmate and the current isInCheck state
         }
 
-        // Optional: Reset SFX state if necessary (e.g., stop check music)
-        // sfx.stopAllMusic(); // Or specific check music reset
-
-        // Request repaint
-        repaint();
-
         // Print initial turn
         printCurrentTurn();
 
         // Add initial FEN to history (for the first move number)
          gameHistory.add(generateFEN());
+         
+        // Request repaint
+        repaint();
 
     }
 
@@ -524,6 +521,7 @@ public class Board extends JPanel {
                         if (parent instanceof javax.swing.JFrame) {
                             for (java.awt.Component comp : ((javax.swing.JFrame)parent).getContentPane().getComponents()) {
                                 if (comp instanceof screens.Game) {
+                                    loadBoard();
                                     ((screens.Game)comp).resetGame();
                                     break;
                                 }
@@ -537,6 +535,7 @@ public class Board extends JPanel {
                                 if (comp instanceof javax.swing.JPanel) {
                                     java.awt.CardLayout cl = (java.awt.CardLayout)((javax.swing.JPanel)comp).getLayout();
                                     cl.show((javax.swing.JPanel)comp, "Menu");
+                                    loadBoard();
                                     break;
                                 }
                             }

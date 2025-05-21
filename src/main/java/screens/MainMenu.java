@@ -24,7 +24,7 @@ import sfx.SFXManager;
 
 /**
  *
- * @author Ricardo
+ * @author angelsn & ricardo
  */
 public class MainMenu extends JPanel {
     private CardLayout cardLayout;

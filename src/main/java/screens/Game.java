@@ -8,7 +8,7 @@ import main.MoveHistoryPanel;
 
 /**
  *
- * @author pausa
+ * @author angelsn & ricardo
  */
 public class Game extends JPanel {
     private Board board = new Board();

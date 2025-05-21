@@ -13,7 +13,7 @@ import main.Board;
 
 /**
  *
- * @author pausa
+ * @author angelsn
  */
 public abstract class Piece {
     

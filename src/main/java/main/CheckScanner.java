@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import pieces.Piece;
 
 /**
- * Clase para escanear el tablero y determinar situaciones de jaque, jaque mate y tablas.
- * Adaptado de la lógica del proyecto base.
+ * 
+ * @author angelsn
  */
 public class CheckScanner {
 

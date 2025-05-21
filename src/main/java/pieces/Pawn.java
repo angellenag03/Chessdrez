@@ -9,7 +9,7 @@ import main.Board;
 
 /**
  *
- * @author pausa
+ * @author angelsn
  */
 public class Pawn extends Piece{
     

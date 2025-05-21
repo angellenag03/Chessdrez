@@ -8,7 +8,7 @@ import pieces.Piece;
 
 /**
  *
- * @author pausa
+ * @author angelsn
  */
 public class Move {
     int oldCol, oldRow;
